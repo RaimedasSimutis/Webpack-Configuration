@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
     entry: './src/index.js',
     mode: 'development',
+    devtool: 'inline-source-map',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'app.js'
@@ -41,11 +42,13 @@ module.exports = {
         contentBase: './dist',
         },
     plugins: [
-        new HTMLWebpackPlugin(),
+        new HTMLWebpackPlugin(
+            {
+                filename: 'index.html',
+                template: 'src/index.html',
+            }
+        ),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin(),
     ]
-
-
-
 }
